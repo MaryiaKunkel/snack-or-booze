@@ -19,6 +19,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 
+// Handles adding new item form, adding the item to the database.
 function FoodMenu({ food, addItem }) {
   const { foodType } = useParams();
   const items = food[foodType];

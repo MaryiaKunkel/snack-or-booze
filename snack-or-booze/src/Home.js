@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
+// Handles showing the home page with quantity of available snacks and drinks
 function Home({ snacksAmount, drinksAmount }) {
   return (
     <section className="col-md-8">
