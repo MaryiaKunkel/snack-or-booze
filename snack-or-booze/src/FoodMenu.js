@@ -40,13 +40,17 @@ function FoodMenu({ food, addItem }) {
       serve: serve,
     };
     await SnackOrBoozeApi.addFood(foodType, newItem);
-    addItem({ foodType: foodType, newItem: newItem });
+    addItem(foodType, newItem);
     setName("");
     setDescription("");
     setRecipe("");
     setServe("");
     history.push(`/${foodType}`);
   };
+
+  if (!items || items.length === 0) {
+    return <p>No items found for this category.</p>;
+  }
 
   return (
     <section className="col-md-4">

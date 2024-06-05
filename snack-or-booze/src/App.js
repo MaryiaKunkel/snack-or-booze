@@ -17,11 +17,19 @@ function App() {
   });
   // A function that adds an item to the food state from submitted form where foodType can be snacks or drinks, newItem is an object of item characteristics.
   const addItem = (foodType, newItem) => {
-    setFood((currentArray) => {
+    setFood((foodObj) => {
       if (foodType === "snacks") {
-        return { ...currentArray, snacks: [...currentArray.snacks, newItem] };
+        return {
+          snacks: [...foodObj.snacks, newItem],
+          drinks: [...foodObj.drinks],
+        };
       } else if (foodType === "drinks") {
-        return { ...currentArray, drinks: [...currentArray.drinks, newItem] };
+        return {
+          snacks: [...foodObj.snacks],
+          drinks: [...foodObj.drinks, newItem],
+        };
+      } else {
+        return foodObj;
       }
     });
   };
@@ -38,7 +46,6 @@ function App() {
     }
     fetchData();
   }, []);
-
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
@@ -49,20 +56,19 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              <Home
-                food={food}
-                snacksAmount={food.snacks.length}
-                drinksAmount={food.drinks.length}
-              />
+              <Home food={food} />
             </Route>
             <Route exact path="/:foodType">
-              <Menu food={food} />
+              <Menu food={food} addItem={addItem} />
             </Route>
             <Route path="/:foodType/:id">
               <Snack food={food} cantFind="/:foodType" />
             </Route>
-            <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>
+            <Route path="*">
+              {console.log("Unmatched route")}
+              <div>
+                <p>Hmmm. I can't seem to find what you want.</p>
+              </div>
             </Route>
           </Switch>
         </main>

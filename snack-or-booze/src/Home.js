@@ -2,19 +2,20 @@ import React from "react";
 import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 // Handles showing the home page with quantity of available snacks and drinks
-function Home({ snacksAmount, drinksAmount }) {
+function Home({ food }) {
   return (
     <section className="col-md-8">
       <Card>
         <CardBody className="text-center">
           <CardTitle>
-            <h3 className="font-weight-bold">
+            <p className="font-weight-bold">
               Welcome to Silicon Valley's premier dive cafe!
-            </h3>
+            </p>
           </CardTitle>
           <CardSubtitle>
             <h3>
-              We've got {drinksAmount} drinks and {snacksAmount} snacks
+              We've got {food.drinks.length} drinks and {food.snacks.length}{" "}
+              snacks
             </h3>
           </CardSubtitle>
         </CardBody>
